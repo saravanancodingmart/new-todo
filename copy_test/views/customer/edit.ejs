@@ -1,0 +1,25 @@
+<form action="/customer/update/<%=customer.id%>" method="POST" class="form-signin">
+	<h2> you are editing a User...</h2>
+	<input value="<%= customer.name %>"  name="name" type="text" class="form-control"/>
+	<input value="<%= customer.email %>"  name="email" type="text" class="form-control"/>
+	
+	<%if (session.Customer.role=="Admin"||session.Customer.name=="admin") {%>
+	<select name="role">
+		<%_.each(roles,function(role){%>
+			<% if(customer.role == role.role) { %>
+				<option selected>
+		    		<%= role.role %>
+			 	</option>
+			<% }else{ %>
+				<option >
+		    		<%= role.role %>
+			 	</option>
+			<% } %> 	
+		<% });%>
+	</select>
+	<%}%>
+
+</br></br>
+	<input type="submit" value="Proceed" class="btn btn-lg btn-primary btn-block "/>
+	<input type="hidden" name="_csrf" value="<%=_csrf %>"/>
+</form>

@@ -1,0 +1,31 @@
+<div class="container">
+<form action="/role/create" method="POST" id="form-signup" class="form-signin">
+
+	<h2 class="form-signin-heading"> create a role </h2>
+
+	<% if(flash && flash.err) { %>
+		<ul class="alert alert-danger">
+		<% Object.keys(flash.err).forEach(function(error) { %>
+			<li> <%- JSON.stringify(flash.err[error]) %> </li>
+			<% }) %>
+		</ul>
+		<% } %>
+		
+	<input type="text" class="form-control" placeholder="role name" name="role"/>
+	
+	
+	<br/>
+
+</form>
+
+</br>
+	
+	<ul>
+		<%_.each(roles,function(role){%>
+		    	<p style="padding-left:12%;">
+		    		<%= role.role %>
+			 	</p> 
+			
+		<% });%>
+	</ul>
+</div>

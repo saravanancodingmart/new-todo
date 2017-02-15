@@ -1,0 +1,37 @@
+<div class="container">
+		<center> <h1> ToDo List </h1> </center>	</br> </br>
+
+
+
+<form action="/todo/create" method="POST"> 
+			<center> 
+				<input type="text" name="content" id ="textid" class="textclass" placeholder=" Type a task, then press Enter .." 	 style="width:70%; height:50px; font-size:30px;"/>
+				<input type="hidden" name="customer_id" value="<%=session.Customer.id%>"/>
+			 </center>
+</form>			
+ </br>
+	
+	<ul>
+		<%_.each(todos,function(todo){%>
+			
+			<% if(todo.customer_id==session.Customer.id) { %>
+
+		    	<p style="padding-left:12%;">
+
+					<input type="checkbox" name="Completed" id="<%=todo.id%>" class="strikethrough"
+						<% if(todo.Completed==true){ %>
+							checked="checked"
+						<% } %>
+					style="width:25px;height:25px;cursor:pointer;text-align:down;vertical-align:-3px;"  
+					/>	
+
+					<label for="<%=todo.id%>" style="padding-left:5px;font-size:26px; vertical-align:middle;"> <%= todo.content %> </label> 
+									 		
+					<a href="/todo/edit/<%=todo.id%>/" class="btn btn-inverse"> <i class="fa fa-edit"></i> <strong> EDIT</strong></a>
+
+					<a href="/todo/destroy/<%=todo.id%>/" class="btn btn-inverse"> <i class="fa fa-trash"> </i> <strong> DELETE </strong></a>	 	
+			 	</p> 
+			<% } %>
+		<% });%>
+	</ul>
+</div>
